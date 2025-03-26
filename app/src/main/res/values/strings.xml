@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">EasyFood</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Home Fragment-->
+    <string name="home_fragment">Home</string>
+    <string name="food_election">What would you like to eat?</string>
+    <string name="popular_items">Over popular items</string>
+    <string name="category">Category</string>
+    <string name="category_name">Category name</string>
+
+
+    <!--Meal Activity-->
+    <string name="meal_name">Meal name</string>
+    <string name="instruction">- Instructions:</string>
+    <string name="category_label">Category: %s</string>
+    <string name="area_label">Area: %s</string>
+
+
+</resources>
