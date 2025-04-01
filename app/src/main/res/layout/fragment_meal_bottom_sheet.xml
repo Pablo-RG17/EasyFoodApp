@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.bottomsheet.MealBottomSheetFragment">
+
+
+    <ImageView
+        android:id="@+id/ivBottomSheet"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:scaleType="centerCrop"
+        android:src="@color/accent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearBottomSheet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivBottomSheet"
+        app:layout_constraintTop_toTopOf="@id/ivBottomSheet">
+
+        <TextView
+            android:id="@+id/tvBottomSheetArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_area"
+            android:drawableTint="@color/g_black"
+            android:fontFamily="@font/myfont"
+            android:textColor="@color/g_black"
+            tools:text="Mexico" />
+
+        <TextView
+            android:id="@+id/tvBottomSheetCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_category"
+            android:drawableTint="@color/g_black"
+            android:fontFamily="@font/myfont"
+            android:textColor="@color/g_black"
+            tools:text="Beef" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBottomSheetMealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/myfont"
+        android:textColor="@color/g_black"
+        app:layout_constraintStart_toStartOf="@id/linearBottomSheet"
+        app:layout_constraintTop_toBottomOf="@id/linearBottomSheet"
+        tools:text="Meal Name" />
+
+    <TextView
+        android:id="@+id/tvBottomSheetReadMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/myfont"
+        android:text="@string/read_more"
+        android:textColor="@color/g_black"
+        app:layout_constraintStart_toStartOf="@id/tvBottomSheetMealName"
+        app:layout_constraintTop_toBottomOf="@id/tvBottomSheetMealName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,9 +9,10 @@ import com.bumptech.glide.Glide
 import com.example.easyfood.databinding.MealItemBinding
 import com.example.easyfood.pojo.Meal
 
-class FavoritesMealsAdapter :
-    RecyclerView.Adapter<FavoritesMealsAdapter.FavoritesMealsAdapterViewHolder>() {
+class MealsAdapter :
+    RecyclerView.Adapter<MealsAdapter.FavoritesMealsAdapterViewHolder>() {
 
+    var onItemClick: ((Meal) -> Unit)? = null
 
     class FavoritesMealsAdapterViewHolder(val binding: MealItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -46,6 +47,9 @@ class FavoritesMealsAdapter :
         Glide.with(holder.itemView).load(meal.strMealThumb).into(holder.binding.ivMeal)
         holder.binding.tvMeal.text = meal.strMeal
 
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(meal)
+        }
     }
 
     override fun getItemCount() = differ.currentList.size

@@ -10,6 +10,11 @@
     <string name="category">Category</string>
     <string name="category_name">Category name</string>
 
+    <!--Bottom Sheet Fragment-->
+    <string name="read_more">Read more…</string>
+
+    <!--Search Box-->
+    <string name="search_meal">Search Meal…</string>
 
     <!--Meal Activity-->
     <string name="meal_name">Meal name</string>

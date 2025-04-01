@@ -1,5 +1,6 @@
 package com.example.easyfood.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.easyfood.adapters.CategoryMealsAdapter
 import com.example.easyfood.databinding.ActivityCategoryMealsBinding
 import com.example.easyfood.fragments.HomeFragment
+import com.example.easyfood.fragments.HomeFragment.Companion.MEAL_ID
+import com.example.easyfood.fragments.HomeFragment.Companion.MEAL_NAME
+import com.example.easyfood.fragments.HomeFragment.Companion.MEAL_THUMB
 import com.example.easyfood.viewmodel.CategoryMealsViewModel
 
 class CategoryMealsActivity : AppCompatActivity() {
@@ -33,7 +37,20 @@ class CategoryMealsActivity : AppCompatActivity() {
                 binding.tvCategoryCount.text = mealsList.size.toString()
                 categoryMealsAdapter.setMealsList(mealsList)
             })
+
+        onMealClick()
     }
+
+    private fun onMealClick() {
+        categoryMealsAdapter.onItemClick = { meal ->
+            val intent = Intent(this, MealActivity::class.java)
+            intent.putExtra(MEAL_ID, meal.idMeal)
+            intent.putExtra(MEAL_NAME, meal.strMeal)
+            intent.putExtra(MEAL_THUMB, meal.strMealThumb)
+            startActivity(intent)
+        }
+    }
+
 
     private fun prepareRecyclerView() {
         categoryMealsAdapter = CategoryMealsAdapter()

@@ -1,5 +1,6 @@
 package com.example.easyfood.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyfood.activities.MainActivity
-import com.example.easyfood.adapters.FavoritesMealsAdapter
+import com.example.easyfood.activities.MealActivity
+import com.example.easyfood.adapters.MealsAdapter
 import com.example.easyfood.databinding.FragmentFavoritesBinding
+import com.example.easyfood.fragments.HomeFragment.Companion.MEAL_ID
+import com.example.easyfood.fragments.HomeFragment.Companion.MEAL_NAME
+import com.example.easyfood.fragments.HomeFragment.Companion.MEAL_THUMB
 import com.example.easyfood.viewmodel.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -20,7 +25,8 @@ class FavoritesFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var viewModel: HomeViewModel
-    private lateinit var favoritesAdapter: FavoritesMealsAdapter
+    private lateinit var favoritesAdapter: MealsAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,8 @@ class FavoritesFragment : Fragment() {
 
         prepareRecyclerView()
         observeFavorites()
+
+        onMealClick()
 
         val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -69,9 +77,19 @@ class FavoritesFragment : Fragment() {
         ItemTouchHelper(itemTouchHelper).attachToRecyclerView(binding.rvFavorites)
     }
 
+    private fun onMealClick() {
+        favoritesAdapter.onItemClick = { meal ->
+            val intent = Intent(activity, MealActivity::class.java)
+            intent.putExtra(MEAL_ID, meal.idMeal)
+            intent.putExtra(MEAL_NAME, meal.strMeal)
+            intent.putExtra(MEAL_THUMB, meal.strMealThumb)
+            startActivity(intent)
+        }
+    }
+
 
     private fun prepareRecyclerView() {
-        favoritesAdapter = FavoritesMealsAdapter()
+        favoritesAdapter = MealsAdapter()
         binding.rvFavorites.apply {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
             adapter = favoritesAdapter

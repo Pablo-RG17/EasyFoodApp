@@ -5,9 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.easyfood.databinding.MealItemBinding
+import com.example.easyfood.pojo.Meal
 import com.example.easyfood.pojo.MealsByCategory
 
 class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewHolder>() {
+
+    var onItemClick: ((MealsByCategory) -> Unit)? = null
+
     private var mealsList = ArrayList<MealsByCategory>()
 
     fun setMealsList(mealsList: List<MealsByCategory>) {
@@ -34,6 +38,10 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
             .into(holder.binding.ivMeal)
 
         holder.binding.tvMeal.text = mealsListPosition.strMeal
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(mealsListPosition)
+        }
     }
 
     override fun getItemCount() = mealsList.size

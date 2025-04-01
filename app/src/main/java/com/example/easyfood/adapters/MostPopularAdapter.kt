@@ -9,7 +9,8 @@ import com.example.easyfood.pojo.MealsByCategory
 
 class MostPopularAdapter() : RecyclerView.Adapter<MostPopularAdapter.PopularMealsViewHolder>() {
 
-    lateinit var onItemClick:((MealsByCategory) -> Unit)
+    lateinit var onItemClick: ((MealsByCategory) -> Unit)
+    var onLongItemClick: ((MealsByCategory) -> Unit)? = null
     var mealsList = ArrayList<MealsByCategory>()
 
     fun setMeals(mealList: ArrayList<MealsByCategory>) {
@@ -31,12 +32,19 @@ class MostPopularAdapter() : RecyclerView.Adapter<MostPopularAdapter.PopularMeal
     }
 
     override fun onBindViewHolder(holder: PopularMealsViewHolder, position: Int) {
+        val mealsListPosition = mealsList[position]
+
         Glide.with(holder.itemView)
-            .load(mealsList[position].strMealThumb)
+            .load(mealsListPosition.strMealThumb)
             .into(holder.binding.ivPopularMealItem)
 
         holder.itemView.setOnClickListener {
-            onItemClick.invoke(mealsList[position])
+            onItemClick.invoke(mealsListPosition)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onLongItemClick?.invoke(mealsListPosition)
+            true
         }
     }
 
